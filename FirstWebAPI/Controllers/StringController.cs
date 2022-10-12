@@ -28,6 +28,14 @@ namespace FirstWebAPI.Controllers
             return "Stringa inserita: " + s;
         }
 
+        [HttpPost("removeAt/{index}")]
+        public string RemoveAt(int index)
+        {
+            if(list.Remove(list.ElementAt(index)))
+                return "Elemento eliminato: " + list.ElementAt(index); ;
+            return "Elemento non trovato";
+        }
+
         [HttpGet()]
         public string GetAllFromList()
         {
