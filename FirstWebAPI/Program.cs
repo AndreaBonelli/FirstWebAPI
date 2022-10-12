@@ -22,5 +22,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/error");
+}
+
 app.Run();
 
