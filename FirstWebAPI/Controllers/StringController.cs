@@ -41,7 +41,7 @@ namespace FirstWebAPI.Controllers
             return "Elemento non eliminato";
         }
 
-        [HttpGet()]
+        [HttpGet]
         public string GetAllFromList()
         {
             string all=string.Empty;
@@ -51,8 +51,8 @@ namespace FirstWebAPI.Controllers
             return "lista completa:" + all;
         }
 
-        [HttpGet("elementAt/{index}")]
-        public string ElementAt(int index)
+        [HttpGet("stringAt/{index}")]
+        public string stringAt(int index)
         {
             //if(list.Count > index && index>0)
             try
@@ -61,7 +61,7 @@ namespace FirstWebAPI.Controllers
             }
             catch(ArgumentOutOfRangeException)
             {
-                return "L'ndice inserito è fuori dai confini della lista";
+                return "L'indice inserito è fuori dai confini della lista";
             }
             
         }

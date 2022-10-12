@@ -25,18 +25,19 @@ namespace FirstWebAPI.Controllers
             return "lista riempita";
         }
 
-        [HttpPost("add/{s}")]
-        public string AddToList(Person p)
+        [HttpPost("add")]
+        public string AddToList([FromBody]Person p)
         {
             list.Add(p);
             return "Persona inserita: " + p;
         }
 
-        [HttpPost("removeAt/{index}")]
+        [HttpDelete("removeAt/{index}")]
         public string RemoveAt(int index)
         {
             if (list.Remove(list.ElementAt(index)))
                 return "Persona eliminata: " + list.ElementAt(index); ;
+            
             return "Persona non trovata";
         }
 
@@ -49,10 +50,18 @@ namespace FirstWebAPI.Controllers
             return "lista completa:\n" + all;
         }
 
-        [HttpGet("elementAt/{index}")]
-        public string ElementAt(int index)
+        [HttpGet("personAt/{index}")]
+        public string personAt(int index)
         {
-            return "Persona trovata: " + list.ElementAt(index); ;
+            try
+            {
+                return "Elemento trovato: " + list.ElementAt(index);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                //return new HttpResponseMessage(System.Net.HttpStatusCode.NotFound);
+                return "L'indice inserito è fuori dai confini della lista";
+            }
         }
 
     }
