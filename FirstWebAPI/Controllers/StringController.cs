@@ -6,9 +6,9 @@ namespace FirstWebAPI.Controllers
     [Route("[controller]")] // grazie a [] prende da solo "WeatherForecast"
     public class StringController : ControllerBase
     {
-        List<string> list = new List<string>();
+        public List<string> list = new List<string>();
 
-        private static readonly string[] Summaries = new[]
+        public string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
@@ -28,6 +28,21 @@ namespace FirstWebAPI.Controllers
             return "Stringa inserita: " + s;
         }
 
-        
+        [HttpGet()]
+        public string GetAllFromList()
+        {
+            string all=string.Empty;
+            foreach (var s in list)
+                all += s + "\n";
+            return "lista completa:\n" + all;
+        }
+
+        [HttpGet("elementAt/{index}")]
+        public string ElementAt(int index)
+        {
+            return "Elemento trovato: " + list.ElementAt(index); ;
+        }
+
+
     }
 }
