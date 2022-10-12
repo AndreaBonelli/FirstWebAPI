@@ -8,7 +8,7 @@ namespace FirstWebAPI.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
-        public List<Person> list = new List<Person>();
+        public static List<Person> list = new List<Person>();
 
         public Person[] RandomPeople = new[]
         {
