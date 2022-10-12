@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Net.Http;
 
 namespace FirstWebAPI.Controllers
 {
@@ -36,7 +38,7 @@ namespace FirstWebAPI.Controllers
             if (list.Remove(elem))
                 return "Elemento eliminato: " + elem;
             
-            return "Elemento non trovato";
+            return "Elemento non eliminato";
         }
 
         [HttpGet()]
@@ -52,8 +54,16 @@ namespace FirstWebAPI.Controllers
         [HttpGet("elementAt/{index}")]
         public string ElementAt(int index)
         {
-            Console.WriteLine("Elemento trovato: " + list.ElementAt(index));
-            return "Elemento trovato: " + list.ElementAt(index); ;
+            //if(list.Count > index && index>0)
+            try
+            {
+                return "Elemento trovato: " + list.ElementAt(index);
+            }
+            catch(ArgumentOutOfRangeException)
+            {
+                return "L'ndice inserito è fuori dai confini della lista";
+            }
+            
         }
 
 
