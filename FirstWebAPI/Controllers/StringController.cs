@@ -18,9 +18,7 @@ namespace FirstWebAPI.Controllers
         {
             foreach (var s in Summaries)
                 list.Add(s);
-
-            foreach (var s in Summaries)
-                Console.WriteLine(s);
+            
             return "lista riempita";
         }
 
@@ -31,11 +29,13 @@ namespace FirstWebAPI.Controllers
             return "Stringa inserita: " + s;
         }
 
-        [HttpPost("removeAt/{index}")]
+        [HttpDelete("removeAt/{index}")]
         public string RemoveAt(int index)
         {
-            if(list.Remove(list.ElementAt(index)))
-                return "Elemento eliminato: " + list.ElementAt(index); ;
+            string elem = list.ElementAt(index);
+            if (list.Remove(elem))
+                return "Elemento eliminato: " + elem;
+            
             return "Elemento non trovato";
         }
 
@@ -44,8 +44,9 @@ namespace FirstWebAPI.Controllers
         {
             string all=string.Empty;
             foreach (var s in list)
-                all += s + "\n";
-            return "lista completa:\n" + all;
+                all += "\n" + s;
+            
+            return "lista completa:" + all;
         }
 
         [HttpGet("elementAt/{index}")]
