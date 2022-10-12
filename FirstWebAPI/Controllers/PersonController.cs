@@ -51,18 +51,21 @@ namespace FirstWebAPI.Controllers
         }
 
         [HttpGet("personAt/{index}")]
-        public string personAt(int index)
+        public Person personAt(int index)
         {
             try
             {
-                return "Elemento trovato: " + list.ElementAt(index);
+                return list.ElementAt(index);
             }
             catch (ArgumentOutOfRangeException)
             {
                 //return new HttpResponseMessage(System.Net.HttpStatusCode.NotFound);
-                return "L'indice inserito è fuori dai confini della lista";
+                //return "L'indice inserito è fuori dai confini della lista";
+                return null;
             }
+            
         }
+
 
     }
 }
